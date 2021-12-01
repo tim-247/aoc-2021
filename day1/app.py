@@ -9,7 +9,7 @@ def count_depth_increases(lines: list, block_size: int=1) -> int:
     count_increases = 0
     blocks = []
     for index, line in enumerate(lines):
-        block = (lines[index:index+block_size])
+        block = (tuple(lines[index:index+block_size]))
         if len(block) == block_size:
             blocks.append(block)
 
