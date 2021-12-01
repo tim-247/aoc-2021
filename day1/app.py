@@ -1,19 +1,34 @@
-import os
+import sys
 
-def count_depth_increases(lines: list) -> int:
+"""
+Solved generically. Pass block size as first command line argument. Default is 1.
+"""
+
+
+def count_depth_increases(lines: list, block_size: int=1) -> int:
     count_increases = 0
-    for index, li in enumerate(lines):
-        if index < len(lines) - 1:
-            if li < lines[index+1]:
+    blocks = []
+    for index, line in enumerate(lines):
+        block = (lines[index:index+block_size])
+        if len(block) == block_size:
+            blocks.append(block)
+
+    for index, block in enumerate(blocks):
+        if index < len(blocks) -1 :
+            if sum(block) < sum(blocks[index+1]):
                 count_increases += 1
+
     return count_increases
 
 
 def main():
-    with open(os.getcwd() + '/input.txt', 'r') as input:
-        inputlist = [ int(line) for line in input.read().splitlines() ]
+    try:
+        block_size = int(sys.argv[1])
+    except IndexError:
+        block_size = 1
+    inputlist = [ int(line.rstrip()) for line in sys.stdin ]
 
-    print(count_depth_increases(inputlist))
+    print(count_depth_increases(inputlist, block_size))
     
 
 if __name__ == "__main__":
