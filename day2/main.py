@@ -17,7 +17,7 @@ class Submarine():
             self.vpos = 0
 
         self.hpos = hpos
-        print(f"Sub created at position: {self.report_position()}")
+        print(f"{self.__class__.__name__} created at position: {self.report_position()}")
 
     
     def move(self, direction: str, value: int) -> None:
@@ -103,9 +103,9 @@ def process_line(line: tuple, sub: Submarine) -> None:
 
 
 def main():
-    sub_1 = Submarine()
-    sub_2 = AdvancedSubmarine()
     lines = [ line for line in sys.stdin ] 
+    
+    sub_1 = Submarine()
 
     print("Executing part 1")
     for line in lines:
@@ -117,6 +117,7 @@ def main():
     print(f"Final position: {sub_1.report_position()}")
     print(f"Product: {prod(sub_1.report_position())}")
 
+    sub_2 = AdvancedSubmarine()
     print("Executing part 2")
     for line in lines:
         try:
