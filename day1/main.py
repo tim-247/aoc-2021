@@ -22,10 +22,7 @@ def count_depth_increases(lines: list, block_size: int=1) -> int:
 
 
 def main():
-    try:
-        block_size = int(sys.argv[1])
-    except IndexError:
-        block_size = 1
+    block_size = int(sys.argv[1]) or 1
     inputlist = [ int(line.rstrip()) for line in sys.stdin ]
 
     print(count_depth_increases(inputlist, block_size))
