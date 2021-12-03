@@ -68,7 +68,7 @@ def part2(lines: list) -> None:
             print(f"Final CO2: {co2_input}")
             break
 
-    print(o2_input, co2_input)
+    print(f"O2: {int(o2_input[0], 2)}, CO2: {int(co2_input[0], 2)}")
     print(int(o2_input[0], 2) * int(co2_input[0], 2))
 
 if __name__ == "__main__":
