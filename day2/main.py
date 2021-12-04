@@ -7,24 +7,22 @@ class Submarine():
     Basic submarine class
     """
 
-
-    def __init__(self, hpos:int = 0, vpos:int = 0) -> None:
+    def __init__(self, hpos: int = 0, vpos: int = 0) -> None:
 
         if vpos >= 0:
             self.vpos = vpos
         else:
-            print(f"Vertical position {vpos} above surface. Moving to surface. Splash!")
+            print(f"Vertical position {vpos} above surface. Moving to surface. Splash!")  # noqa: E501
             self.vpos = 0
 
         self.hpos = hpos
-        print(f"{self.__class__.__name__} created at position: {self.report_position()}")
+        print(f"{self.__class__.__name__} created at position: {self.report_position()}")  # noqa: E501
 
-    
     def move(self, direction: str, value: int) -> None:
 
         directions = {"forward", "up", "down"}
         if direction.lower() not in directions:
-            raise ValueError(f"Invalid direction. Valid directions are: {directions}")
+            raise ValueError(f"Invalid direction. Valid directions are: {directions}")  # noqa: E501
         else:
             if direction.lower() == "forward":
                 self.move_forward(value)
@@ -35,15 +33,13 @@ class Submarine():
                     print(e)
             elif direction.lower() == "down":
                 self.move_down(value)
-    
 
     def move_forward(self, value: int) -> None:
 
         print(f"Moving: forward {value}")
         self.hpos += value
 
-
-    def move_up(self, value:int) -> None:
+    def move_up(self, value: int) -> None:
 
         print(f"Attempting move: up {value}")
         if self.vpos - value < 0:
@@ -51,13 +47,11 @@ class Submarine():
         else:
             print("Successful move")
             self.vpos -= value
-    
 
-    def move_down(self, value:int) -> None:
+    def move_down(self, value: int) -> None:
 
         print(f"Moving: down {value}")
         self.vpos += value
-
 
     def report_position(self) -> tuple:
 
@@ -69,21 +63,19 @@ class AdvancedSubmarine(Submarine):
     Advanced submarine class for part 2 of the puzzle
     """
 
-    def __init__(self, hpos: int = 0, vpos: int = 0, aim:int = 0) -> None:
+    def __init__(self, hpos: int = 0, vpos: int = 0, aim: int = 0) -> None:
+
         super().__init__(hpos=hpos, vpos=vpos)
         self.aim = aim
         print(f"Sub aim: {aim}")
-    
 
     def move_down(self, value: int) -> None:
         print(f"Adding {value} to aim")
         self.aim += value
-    
 
     def move_up(self, value: int) -> None:
         print(f"Subtracting {value} from aim")
         self.aim -= value
-    
 
     def move_forward(self, value: int) -> None:
         print(f"Attempting move forward {value}, aim {self.aim}")
@@ -103,8 +95,8 @@ def process_line(line: tuple, sub: Submarine) -> None:
 
 
 def main():
-    lines = [ line for line in sys.stdin ] 
-    
+    lines = [ line for line in sys.stdin ]
+
     sub_1 = Submarine()
 
     print("Executing part 1")
@@ -113,7 +105,7 @@ def main():
             process_line(line.rstrip(), sub_1)
         except Exception as e:
             print(e)
-    
+
     print(f"Final position: {sub_1.report_position()}")
     print(f"Product: {prod(sub_1.report_position())}")
 
@@ -124,7 +116,7 @@ def main():
             process_line(line.rstrip(), sub_2)
         except Exception as e:
             print(e)
-    
+
     print(f"Final position: {sub_2.report_position()}")
     print(f"Product: {prod(sub_2.report_position())}")
 
